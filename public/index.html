@@ -4,34 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DJ Set Creator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-bmsYOybW5gpkRwTWdK5vC7E/Lo6G0BYpYEd5VkrHs3dZfUtmIf0j8gwy9OgoBaJCS9Xp+bltHYfVUqUu3xgYog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    textarea { width: 100%; height: 80px; }
-    button { padding: 10px 20px; margin-top: 10px; }
-    #result { white-space: pre-wrap; margin-top: 20px; }
+    body { background:#f0f0f0; margin:40px; }
+    #app { max-width:600px; margin:auto; background:white; padding:30px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    textarea { width:100%; height:80px; }
+    button { margin-top:10px; }
+    #result { white-space:pre-wrap; margin-top:20px; }
   </style>
 </head>
 <body>
-  <h1>DJ Set Creator</h1>
-  <p>Enter a prompt describing the vibe or style of your desired DJ set.</p>
-  <textarea id="prompt" placeholder="e.g. mellow electronic with jazzy vibes"></textarea><br>
-  <button id="generate">Generate DJ Set</button>
-  <div id="result"></div>
-  <script>
-    document.getElementById('generate').addEventListener('click', async () => {
-      const prompt = document.getElementById('prompt').value;
-      const res = await fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt })
-      });
-      const data = await res.json();
-      if (data.error) {
-        document.getElementById('result').textContent = data.error;
-      } else {
-        document.getElementById('result').textContent = data.result;
-      }
-    });
-  </script>
+  <div id="root"></div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel" src="App.jsx"></script>
 </body>
 </html>
